@@ -1,17 +1,27 @@
 .data
-prompt: .asciiz "Enter an integer: "
-result: .word 0
+prompt: .asciiz "Enter the coefficients: "
+coefficients: .space 8  # space for two 32-bit integers
 
 .text
 main:
+    # Print prompt
+    li $v0, 4         # syscall code for print string
+    la $a0, prompt    # load address of the prompt string
+    syscall
 
+    # Read first coefficient
+    li $v0, 5         # syscall code for read integer
+    syscall
+    move $t0, $v0     # store the first coefficient in $t0
 
-    # Read integer
-    li $v0, 5           # Load immediate (syscall code for read integer)
-    syscall             # Read integer
-    move $t0, $v0       # Move the read integer value to temporary register $t0
+    # Read second coefficient
+    li $v0, 5         # syscall code for read integer
+    syscall
+    move $t1, $v0     # store the second coefficient in $t1
 
-    # Print the integer
-    li $v0, 1           # Load immediate (syscall code for print integer)
-    move $a0, $t0       # Move the integer value to argument register $a0
-    syscall             # Print integer
+    # Here you can perform further operations with the coefficients
+    
+    # Exit program
+    li $v0, 10        # syscall code for exit
+    syscall
+
