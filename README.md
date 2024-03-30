@@ -1,1 +1,1 @@
-# CSE3038_S2024_Project_1
+# CSE3038 S2024 Project_1
